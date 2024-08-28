@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 // import './App.css'
@@ -6,11 +6,16 @@ import { Button, Container, Stack, Text } from '@chakra-ui/react'
 import Navbar from './componets/Navbar'
 import UserGrid from './componets/UserGrid'
 
+export const BASE_URL = "http://127.0.0.1:5000/api"
+
 function App() {
 
+  const [users, setUsers] = useState([])
+
   return (
+    
     <Stack minH={"100vh"}>
-      <Navbar />
+      <Navbar setUsers={setUsers} />
       
       <Container maxH={"1200px"} my={4}>    
         <Text
@@ -29,7 +34,7 @@ function App() {
             Patratel is my bestie
           </Text>
 				</Text>
-        <UserGrid />
+        <UserGrid users={users} setUsers={setUsers}/>
       </Container>
     </Stack>
   )

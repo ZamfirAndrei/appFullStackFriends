@@ -10,8 +10,8 @@ def get_friends():
     result = list()
 #   result = [friend.to_json() for friend in friends]
     for friend in friends:
-        print(friends)
-        print(friend)
+        # print(friends)
+        # print(friend)
         result.append(friend.to_json())
 
     return jsonify(result)
@@ -30,7 +30,7 @@ def create_friend():
         for field in required_fields:
         
             if field not in data or not data.get(field):
-
+                print(field)
                 return jsonify({"error":f'Missing required field: {field}'}), 400
 
         name = data.get("name")
@@ -95,10 +95,10 @@ def update_friend(id):
         
         data = request.json
 
-        friend.name = data.get("name",friend.name)
-        friend.role = data.get("role",friend.role)
-        friend.description = data.get("description",friend.description)
-        friend.gender = data.get("gender",friend.gender)
+        friend.name = data.get("name", friend.name)
+        friend.role = data.get("role", friend.role)
+        friend.description = data.get("description", friend.description)
+        friend.gender = data.get("gender", friend.gender)
 
         db.session.commit()
         return jsonify(friend.to_json()),200
